@@ -91,7 +91,7 @@ fn tmux() -> Result<()> {
     let success_fg = 255;
     if num > 0 {
         print!(
-            "#[fg=colour{success},bg=colour234]#[bg=colour{success},fg=colour{success_fg}] {} #[fg=colour234,bg=colour{success}]", 
+            "#[fg=colour{success},bg=colour234]#[bg=colour{success},fg=colour{success_fg}] +{} #[fg=colour234,bg=colour{success}]", 
             num, 
             success=success_colour, 
             success_fg=success_fg
