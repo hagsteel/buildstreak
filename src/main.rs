@@ -2,8 +2,22 @@ use std::env;
 use std::fs::{File, OpenOptions};
 use std::io::{Read, Result, Write};
 use std::process::exit;
+use structopt::StructOpt;
 
 const PATH: &str = "/tmp/buildstatus";
+
+#[derive(StructOpt, Debug)]
+#[structopt(version = "0.1", author = "Hagsteel", about = "Build status tracker")]
+enum Opts {
+    #[structopt(about = "Log a successful build")]
+    Success,
+
+    #[structopt(about = "Log a failed build")]
+    Fail,
+
+    #[structopt(about = "Output")]
+    Status,
+}
 
 fn main() {
     let mode = env::args().nth(1);
