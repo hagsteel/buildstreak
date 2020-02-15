@@ -148,8 +148,8 @@ fn tmux() -> Result<()> {
     }
 
     let (success, fail) = read_numbers()?;
-    if success  == fail {
-        print!("#[fg=colour66,bg=colour234]#[bg=colour66,fg=colour234] {success} | {fail} #[fg=colour234,bg=colour66]", 
+    if success == fail {
+        print!("#[fg=colour66,bg=colour234]#[bg=colour66,fg=colour234] {success}#[bg=colour66,fg=colour0]  #[bg=colour66,fg=colour234]{fail} #[fg=colour234,bg=colour66]", 
             success=success, 
             fail=fail
             );
@@ -157,19 +157,21 @@ fn tmux() -> Result<()> {
 
     let success_colour = 237;
     let success_fg = 255;
+    let fail_fg = 246;
     if success > fail {
         print!(
-            "#[fg=colour{success_bg},bg=colour234]#[bg=colour{success_bg},fg=colour{success_fg}] {success} | {fail} #[fg=colour234,bg=colour{success_bg}]", 
+            "#[fg=colour{success_bg},bg=colour234]#[bg=colour{success_bg},fg=colour{success_fg}] {success}#[bg=colour{success_bg},fg=colour0]  #[bg=colour{success_bg},fg=colour{fail_fg}]{fail} #[fg=colour234,bg=colour{success_bg}]", 
             success=success, 
             fail=fail,
             success_bg=success_colour, 
-            success_fg=success_fg
+            success_fg=success_fg,
+            fail_fg=fail_fg
         );
     }
 
     let fail_colour = 196;
     if success < fail {
-        print!("#[fg=colour{fail_bg},bg=colour234]#[bg=colour{fail_bg},fg=colour234] {success} | {fail} #[fg=colour234,bg=colour{fail_bg}]", 
+        print!("#[fg=colour{fail_bg},bg=colour234]#[bg=colour{fail_bg},fg=colour234] {success}#[bg=colour{fail_bg},fg=colour0]  #[bg=colour{fail_bg},fg=colour234]{fail} #[fg=colour234,bg=colour{fail_bg}]", 
             success=success, 
             fail=fail,
             fail_bg=fail_colour);
